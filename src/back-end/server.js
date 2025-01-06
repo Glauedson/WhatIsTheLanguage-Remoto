@@ -1,6 +1,8 @@
+const cors = require('cors')
 const express = require('express');
 const { Pool } = require('pg'); 
 const app = express();
+app.use(cors())
 
 // Dados pra acessar o banco
 // Como informado do ReadME, você deve alterar
@@ -24,13 +26,26 @@ pool.connect((err) => {
 
 // Endpoint principal dos dados de todas as linguagens
 app.get('/dados', async (req, res) => {
+  const { id } = req.query 
+  
   try {
-    const result = await pool.query('SELECT * FROM linguagens')
-    res.json(result.rows)
+    if (id) {
+      const result = await pool.query('SELECT * FROM linguagens WHERE id = $1', [id])
+      
+      if (result.rows.length === 0) {
+        return res.status(404).send('Nenhum dado encontrado com o ID fornecido')
+      }
+      
+      res.json(result.rows[0]) 
+    } else {
+      const result = await pool.query('SELECT * FROM linguagens')
+      res.json(result.rows)
+    }
   } catch (err) {
     res.status(500).send('Erro ao buscar dados: ' + err.message)
   }
-});
+})
+
 
 // Servidor
 const PORT = 3000;

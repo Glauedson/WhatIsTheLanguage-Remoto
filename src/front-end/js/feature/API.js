@@ -5,7 +5,7 @@
 const max = 7
 const numerosSorteados = new Set()
 
-export function sortearNumero() {
+export async function sortearNumero() {
 
   if (numerosSorteados.size === max) {
     console.log('Fim')
@@ -19,5 +19,20 @@ export function sortearNumero() {
 
   numerosSorteados.add(numeroSorteado)
   console.log('Número sorteado:', numeroSorteado)
-  return numeroSorteado
+
+  
+  try {
+    const response = await fetch(`http://localhost:3000/dados?id=${numeroSorteado}`)
+    if (!response.ok) {
+      console.error(`Erro na API: ${response.statusText}`)
+      return
+    }
+
+    const data = await response.json()
+    console.log(data)
+    return data
+  } catch (err) {
+    console.error('Erro ao acessar a API:', err.message)
+  }
+  
 }

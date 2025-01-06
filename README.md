@@ -1,8 +1,9 @@
 # </> What Is The Language?
+![logo](src/front-end/assets/icons/logo-large.png)
 
 Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um site Game interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf).
 
-## 📑 Topicos
+## </> Topicos
 
 - [Descrição do Projeto](#descrição-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
@@ -11,11 +12,11 @@ Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o 
 - [Licença](#licença)
 - [Contato](#contato)
 
-## 📌 Descrição do Projeto
+## </> Descrição do Projeto
 
 O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha qual é a linguagem de progamação através de dicas, o usuário pode escolher entre 2 modos de jogo, **Advinhe Pela Logo** ou **Advinhe Pelo Código**, ambos os modos possuem sistemas de pontos e vidas, o usuário ganha pontos por acertar a advinhar a linguagem e perde vidas toda vez que erra. O jogo encerra quando o usuário perder todas as vidas ou acertando todas as linguagens, após isso aparecerá uma tela **Ranking** de todos os jogadores com seus nomes e suas pontuações.
 
-## 🔧 Tecnologias Utilizadas
+## </> Tecnologias Utilizadas
 
 - **Frontend**:
   - HTML5
@@ -28,7 +29,7 @@ O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha 
   - Endpoints proprios com dados de todas as linguagens
 
 
-## 🌐 Endpoints da API
+## </> Endpoints da API
 
 ### 1. **Obter dados de todas as linguagens**
 **Endpoint:** `GET /dados`
@@ -56,7 +57,7 @@ GET /dados?id=1
 }
 ```
 
-## 💽 Como Executar o Projeto Localmente
+## </> Como Executar o Projeto Localmente
 
 1. Clone este repositório:
    ```bash
