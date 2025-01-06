@@ -11,26 +11,3 @@
 body{
     background-color: #0B0B0E;
 }
-
-header{
-    height: 10vh;
-    display: flex;
-    align-items: center;
-}
-
-main{
-    background-color:#0a0a0c;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.code-box{
-    background-color: #1E1E1E;
-    width: 100%;
-    max-width: 800px;
-    min-width: 400px;
-    aspect-ratio:2/1;
-}
