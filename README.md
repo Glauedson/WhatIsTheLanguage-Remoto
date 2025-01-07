@@ -1,6 +1,8 @@
 # </> What Is The Language?
-![logo](src/front-end/assets/icons/logo-large.png)
+<div align="center">
 
+![logo](src/front-end/assets/icons/logo-large.png)
+</div>
 Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um site Game interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf).
 
 ## </> Topicos
@@ -19,12 +21,13 @@ O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha 
 ## </> Tecnologias Utilizadas
 
 - **Frontend**:
-  - HTML5
-  - CSS3
-  - JavaScript
+
+  [![My Skills](https://skillicons.dev/icons?i=js,html,css)](https://skillicons.dev)
+
 - **Backend**:
-  - NodeJs
-  - PostgreSQL
+  
+  [![My Skills](https://skillicons.dev/icons?i=nodejs,postgres)](https://skillicons.dev)
+
 - **APIs**:
   - Endpoints proprios com dados de todas as linguagens
 
