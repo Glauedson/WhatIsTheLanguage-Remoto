@@ -3,6 +3,7 @@
 
 ![logo](src/front-end/assets/icons/logo-large.png)
 </div>
+
 Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um site Game interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf).
 
 ## </> Topicos

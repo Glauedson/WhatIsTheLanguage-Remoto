@@ -25,22 +25,24 @@
                 <p>LIFE PLAYER:</p>
             </div>
 
-            <div class="life-player">
-                <img src="../assets/icons/heart-icon.svg" alt="vida" width="20px">
-            </div>
+            <!--Aqui são gerados as vidas do player 
+            la no PlayerLife.js-->
 
         </div>
         <div class="code-box">
            
-            <button onclick="Game()">teste</button>
+            <!--Aqui são gerados as dicas-->
 
         </div>
 
         <div class="selection-box">
             <div class="selection-info">
                 <p style="border-bottom: 1px solid #143FED">SELECIONE A LINGUAGEM</p>
-                <p style="color: rgb(129, 129, 129);">SUA PONTUAÇÃO:<p style="color: gold;">0000</p></p>
-            </div>
+                <p style="color: rgb(129, 129, 129);">
+                  SUA PONTUAÇÃO:
+                  <p id="pontuacao" style="color: gold;">0000</p>
+                </p>
+              </div>
             
             <div class="input-container">
                 <p class="bash-text">
@@ -48,6 +50,11 @@
                 </p>
                 <input class="input" id="campoEntrada" placeholder="Digite uma linguagem..." type="text">
                 <ul id="listaSugestoes"></ul>
+            </div>
+
+            <div class="buttons">
+                <button>Enviar</button>
+                <button>Pular tentativa</button>
             </div>
 
         </div>

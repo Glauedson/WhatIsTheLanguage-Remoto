@@ -70,15 +70,14 @@ main{
     z-index: 4; 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .selection-box{
     background-color: #1a1a22;
     width: 100%;
     max-width: 600px;
-    height: 150px;
     display: flex;
     flex-direction: column;
 }
@@ -90,60 +89,79 @@ main{
 }
 
 .input-container {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    gap: 5px;
-    border-radius: 20px;
-  }
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 5px;
+  border-radius: 20px;
+}
   
-  .input-container .bash-text {
-    font-size: .8rem;
-    color: white;
-  }
+.input-container .bash-text {
+  font-size: .8rem;
+  color: white;
+}
   
-  .input-container .bash-text .usuario {
-    color: #E879F9;
-  }
+.input-container .bash-text .usuario {
+  color: #E879F9;
+}
   
-  .input-container .bash-text .maquina {
-    color: #2DD4BF;
-  }
+.input-container .bash-text .maquina {
+  color: #2DD4BF;
+}
   
-  .input-container .bash-text .caractere {
-    color: #A78BFA;
-  }
+.input-container .bash-text .caractere {
+  color: #A78BFA;
+}
   
-  .input-container input[type="text"].input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    width: 200px;
-  }
+.input-container input[type="text"].input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 200px;
+}
   
-  #listaSugestoes {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    background-color: #0F172A;
-    border: 1px solid #ccc;
-    display: none;
-    position: absolute;
-    width: 200px;
-    z-index: 10;
-  }
+#listaSugestoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #0F172A;
+  border: 1px solid #ccc;
+  display: none;
+  position: absolute;
+  width: 200px;
+  z-index: 10;
+}
   
-  #listaSugestoes li {
-    padding: 8px;
-    cursor: pointer;
-    color: white;
-  }
+#listaSugestoes li {
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+}
   
-  #listaSugestoes li:hover {
-    background-color: #444;
-  }
+#listaSugestoes li:hover {
+  background-color: #444;
+}
 
+.buttons{
+  padding-left: 15px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buttons button{
+  background-color: rgb(20, 51, 228);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.buttons button:hover{
+  transition: 1s;
+  border-radius: 5px;
+  background-color: rgb(25, 45, 160);
+}
 
 /* ----Animação dos corações------*/
 .life-player:nth-child(4) {
