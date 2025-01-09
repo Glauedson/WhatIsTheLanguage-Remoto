@@ -30,8 +30,15 @@
 
         </div>
         <div class="code-box">
-           
-            <!--Aqui são gerados as dicas-->
+            <div class="header-terminal">
+                <p>WhatIsTheLanguage ></p>
+                <p>src ></p>
+                <p>peloCodigo ></p>
+                <p>terminal</p>
+            </div>
+            <div class="terminal">
+                <!--Aqui são gerados as dicas-->
+            </div>
 
         </div>
 
@@ -40,9 +47,9 @@
                 <p style="border-bottom: 1px solid #143FED">SELECIONE A LINGUAGEM</p>
                 <p style="color: rgb(129, 129, 129);">
                   SUA PONTUAÇÃO:
-                  <p id="pontuacao" style="color: gold;">0000</p>
+                  <span id="pontuacao" style="color: gold;">0000</span>
                 </p>
-              </div>
+            </div>
             
             <div class="input-container">
                 <p class="bash-text">
@@ -58,6 +65,22 @@
             </div>
 
         </div>
+
+        <!-- Apartir daqui vai o modal de acertar a linguagem e continuar -->
+        <div id="modalAcerto" class="modal">
+            <div class="modal-content">
+                <div class="cover-language"
+                style="background-image: url(https://cdn.iconscout.com/icon/free/png-256/free-python-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-5-pack-logos-icons-3030224.png?f=webp);"
+                ></div>
+                <div class="modal-language-info">
+                    <h3>Python</h3>
+                    <p style="color: rgb(146, 142, 142);">Tipo: <span style="color: rgb(67, 144, 245);">back</span></p>
+                    <p style="color: rgb(146, 142, 142);">Boa! você acertou</p>
+                    <button id="botaoContinuar">Continuar</button>
+                </div>
+            </div>
+        </div>
+          
 
     </main>
 

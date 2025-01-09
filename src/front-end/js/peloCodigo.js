@@ -1,108 +1,137 @@
-import { sortearNumero } from '../js/feature/API.js'
-import { generatePlayerLife, diminuirVida } from '../js/feature/PlayerLife.js'
-import { setupLanguageInput } from '../js/feature/inputLanguage.js'
+import { sortearNumero } from '../js/feature/API.js';
+import { generatePlayerLife, diminuirVida } from '../js/feature/PlayerLife.js';
+import { setupLanguageInput } from '../js/feature/inputLanguage.js';
 
 function Game() {
-    return console.log(sortearNumero())
+  console.log(sortearNumero());
 }
 
-generatePlayerLife()
-window.Game = Game
+generatePlayerLife();
+window.Game = Game;
 
 const linguagens = [
-  "Python", 
-  "JavaScript", 
-  "Java", 
-  "C#", 
-  "SQL", 
-  "Ruby", 
+  "Python",
+  "JavaScript",
+  "Java",
+  "C#",
+  "SQL",
+  "Ruby",
   "PHP"
-]
+];
 
-setupLanguageInput('campoEntrada', 'listaSugestoes', linguagens)
+setupLanguageInput('campoEntrada', 'listaSugestoes', linguagens);
 
-const campoEntrada = document.getElementById('campoEntrada')
-const botaoEnviar = document.querySelector('.buttons button:first-child')
-const pontuacaoElemento = document.getElementById('pontuacao')
-const codeBox = document.querySelector('.code-box')
+const campoEntrada = document.getElementById('campoEntrada');
+const botaoEnviar = document.querySelector('.buttons button:first-child');
+const botaoPular = document.querySelector('.buttons button:last-child');
+const pontuacaoElemento = document.getElementById('pontuacao');
+const codeBox = document.querySelector('.terminal');
 
-let respostaDaAPI = null
-let tentativas = 0
-let pontos = 0
-let dicas = []
-let dicasExibidas = 0
+const modal = document.getElementById('modalAcerto');
+const botaoContinuar = document.getElementById('botaoContinuar');
+
+let respostaDaAPI = null;
+let tentativas = 0;
+let pontos = 0;
+let dicas = [];
+let dicasExibidas = 0;
+
+function mostrarModal() {
+  modal.style.display = 'block';
+}
+
+function esconderModal() {
+  modal.style.display = 'none';
+}
+
+function limparDicas() {
+  codeBox.innerHTML = '';
+  dicasExibidas = 0;
+}
 
 function atualizarPontuacao() {
-  pontuacaoElemento.textContent = pontos.toString().padStart(4, '0')
+  pontuacaoElemento.textContent = pontos.toString().padStart(4, '0');
 }
 
 function adicionarDica() {
   if (dicasExibidas < dicas.length) {
-    const dica = document.createElement('p')
-    dica.textContent = dicas[dicasExibidas]
-    codeBox.appendChild(dica)
-    dicasExibidas++
-
+    const dica = document.createElement('p');
+    dica.textContent = dicas[dicasExibidas];
+    codeBox.appendChild(dica);
+    dicasExibidas++;
     if (dicasExibidas === dicas.length) {
-      alert('Você perdeu o jogo!')
+      alert('Você perdeu o jogo!');
     }
   }
+}
+
+function atualizarModal(data) {
+  const coverLanguage = document.querySelector('.cover-language');
+  const modalLanguageInfo = document.querySelector('.modal-language-info h3');
+  const modalTypeInfo = document.querySelector('.modal-language-info p span');
+
+  coverLanguage.style.backgroundImage = `url(${data.foto_url})`;
+  modalLanguageInfo.textContent = data.nome;
+  modalTypeInfo.textContent = data.tipo;
 }
 
 async function obterRespostaDaAPI() {
   try {
-    const data = await sortearNumero()
+    const data = await sortearNumero();
     if (data) {
-      respostaDaAPI = data.nome.toLowerCase()
-      dicas = [data.dica1, data.dica2, data.dica3, data.dica4, data.dica5]
-      adicionarDica() 
+      respostaDaAPI = data.nome.toLowerCase();
+      dicas = [data.dica1, data.dica2, data.dica3, data.dica4, data.dica5];
+      adicionarDica();
+      atualizarModal(data); 
     } else {
-      console.log('Nenhum dado recebido da API.')
+      console.log('Nenhum dado recebido da API.');
     }
   } catch (error) {
-    console.error('Erro ao buscar dados da API:', error)
+    console.error('Erro ao buscar dados da API:', error);
   }
 }
 
-obterRespostaDaAPI()
+obterRespostaDaAPI();
+
+function processarErro() {
+  tentativas++;
+  diminuirVida();
+
+  if (tentativas <= dicas.length) {
+    adicionarDica();
+  }
+}
 
 botaoEnviar.addEventListener('click', () => {
-  const valorDigitado = campoEntrada.value.trim()
-  campoEntrada.value = ''
+  const valorDigitado = campoEntrada.value.trim();
+  campoEntrada.value = '';
 
   if (respostaDaAPI === null) {
-    console.log('A resposta da API ainda não foi carregada.')
-    return
+    console.log('A resposta da API ainda não foi carregada.');
+    return;
   }
-
-  tentativas++
 
   if (valorDigitado.toLowerCase() === respostaDaAPI) {
-    console.log('Resposta certa!')
-    if (tentativas === 1) {
-      pontos += 1000
-    } else if (tentativas === 2) {
-      pontos += 500
-    } else if (tentativas === 3) {
-      pontos += 100
-    } else if (tentativas === 4) {
-      pontos += 50
-    }
-    atualizarPontuacao()
-
-    for (let i = dicasExibidas; i < dicas.length; i++) {
-      const dica = document.createElement('p')
-      dica.textContent = dicas[i]
-      codeBox.appendChild(dica)
-    }
+    console.log('Resposta certa!');
+    const pontosPorTentativa = [2000, 1000, 500, 100, 50];
+    pontos += pontosPorTentativa[tentativas] || 0;
+    atualizarPontuacao();
+    mostrarModal();
   } else {
-    console.log('Resposta errada.')
-    diminuirVida()
-
-    if (tentativas > dicas.length) {
-      return
-    }
-
-    adicionarDica()
+    console.log('Resposta errada.');
+    processarErro();
   }
-})
+});
+
+botaoPular.addEventListener('click', () => {
+  console.log('Tentativa pulada.');
+  processarErro();
+});
+
+botaoContinuar.addEventListener('click', () => {
+  esconderModal();
+  limparDicas();
+  tentativas = 0;
+  generatePlayerLife();
+  obterRespostaDaAPI();
+});
