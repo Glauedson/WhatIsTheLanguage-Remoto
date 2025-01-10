@@ -12,10 +12,25 @@ body{
     background-color: #0B0B0E;
 }
 
-header{
-    height: 10vh;
-    display: flex;
-    align-items: center;
+header {
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  animation: slideToLeft 1.5s ease-in-out forwards;
+}
+
+@keyframes slideToLeft {
+  0% {
+      transform: translateX(0); 
+  }
+  100% {
+      transform: translateX(-42vw); 
+  }
 }
 
 main{
@@ -58,6 +73,37 @@ main{
     transform: translateX(-50px); 
     animation: slide-in 1s ease-out forwards;
 }
+
+.life-player :hover{
+  transition: 1s;
+  filter: drop-shadow( 0px 0px 20px rgb(255, 0, 0))
+}
+
+/* ----Animação dos corações------*/
+.life-player:nth-child(4) {
+  animation-delay: 0.5s; 
+}
+
+.life-player:nth-child(3) {
+  animation-delay: 1s; 
+}
+
+.life-player:nth-child(2) {
+  animation-delay: 1.5s; 
+}
+
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-50px); 
+    opacity: 0; 
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1; 
+  }
+}
+/* ----Animação dos corações------*/
 
 .code-box{
     background-color: #1a1a22;
@@ -241,29 +287,3 @@ main{
   background-color: #19269c;
 }
 
-
-/* ----Animação dos corações------*/
-.life-player:nth-child(4) {
-    animation-delay: 0.5s; 
-  }
-  
-  .life-player:nth-child(3) {
-    animation-delay: 1s; 
-  }
-  
-  .life-player:nth-child(2) {
-    animation-delay: 1.5s; 
-  }
-  
- 
-  @keyframes slide-in {
-    0% {
-      transform: translateX(-50px); 
-      opacity: 0; 
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1; 
-    }
-  }
-/* ----Animação dos corações------*/
