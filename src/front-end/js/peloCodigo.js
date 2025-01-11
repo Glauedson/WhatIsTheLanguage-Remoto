@@ -81,20 +81,24 @@ function adicionarDica() {
   }
 }
 
-function atualizarModal(data) {
+function atualizarModal(data, pontosGanhos) {
   const coverLanguage = document.querySelector('.cover-language')
   const modalLanguageInfo = document.querySelector('.modal-language-info h3')
   const modalTypeInfo = document.querySelector('.modal-language-info p span')
+  const modalPontuacao = document.querySelector('.modal-points p span')
 
   coverLanguage.style.backgroundImage = `url(${data.foto_url})`
   modalLanguageInfo.textContent = data.nome
   modalTypeInfo.textContent = data.tipo
+  modalPontuacao.textContent = pontosGanhos
 }
 
+let respostaDaAPIData = null
 async function obterRespostaDaAPI() {
   try {
     const data = await sortearNumero()
     if (data) {
+      respostaDaAPIData = data
       respostaDaAPI = data.nome.toLowerCase()
       dicas = [data.dica1, data.dica2, data.dica3, data.dica4, data.dica5]
       adicionarDica()
@@ -130,9 +134,11 @@ botaoEnviar.addEventListener('click', () => {
   if (valorDigitado.toLowerCase() === respostaDaAPI) {
     console.log('Resposta certa!')
     const pontosPorTentativa = [2000, 1000, 500, 100, 50]
-    pontos += pontosPorTentativa[tentativas] || 0
+    const pontosGanhos = pontosPorTentativa[tentativas] || 0
+    pontos += pontosGanhos
     atualizarPontuacao()
     mostrarModal()
+    atualizarModal(respostaDaAPIData, pontosGanhos)
   } else {
     console.log('Resposta errada.')
     processarErro()
