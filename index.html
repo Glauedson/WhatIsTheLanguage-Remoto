@@ -15,11 +15,10 @@
     </header>
 
     <main>
-        <a href="src/front-end/html/peloCodigo.html">
+        <a href="src/front-end/html/peloCodigo.html" id="linkPeloCodigo">
             <div class="header-card">
                 <div class="header-card-content">
-                    <img src="src/front-end/assets/icons/folder-solid.svg" alt="icon"
-                    width="25px">
+                    <img src="src/front-end/assets/icons/folder-solid.svg" alt="icon" width="25px">
                     <p>Pelo Código</p>
                 </div>
             </div>
@@ -29,11 +28,34 @@
                     <p class="card__description">É um modo um pouco mais complexo, indicado para programadores com uma pequena familiaridade com as linguagens de programação</p>
                 </div>
             </div>
-            
         </a>
-
     
-    </main>
+        <!-- Aqui vai ficar o modal de criação de personagem-->
+        <div class="modal" id="modal">
+            <div class="modal-center">
+                <div class="color-header-modal">
+                    <div class="color-picker-container">
+                        <input type="color" id="colorPicker" value="#1c1cdb">
+                    </div>
+                </div>
+                <div class="modal-content">
+                    <div class="profile-player"></div>
+                    <div class="info-player">
+                        <input type="text" placeholder="Digite seu nick...">
+                        <h3>MODO DE JOGO</h3>
+                        <div class="play-mode-modal">
+                            <div class="play-mode-modal-content">
+                                <div class="cover-play"></div>
+                                <p>Pelo Codigo</p>
+                            </div>
+                        </div>
+                        <button id="btnConcluir">CONCLUIR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>    
     
+    <script src="src/front-end/js/index.js"></script>
 </body>
 </html>
