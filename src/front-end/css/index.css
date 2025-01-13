@@ -136,6 +136,108 @@ a{
     height: 325px;
 }
 
+.profile-player{
+    justify-content: end;
+    display: flex;
+}
+
+.profile-player > button {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.411);
+}
+
+.profile-player > button:hover{
+    background-color: rgb(184, 185, 185);
+}
+
+/* --- Modal de foto de perfil ---*/
+.modal-perfil {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.562);
+}
+
+.modal-center-perfil{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-perfil-content{
+    background-color: rgb(32, 25, 49);
+    border-radius: 30px 0px;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.close-btn {
+    color: #f8f8f8;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.image-profile-hub{
+    height: 230px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    overflow-x: auto;
+    gap: 10px;
+    --sb-track-color: #2b2d2d;
+    --sb-thumb-color: #1993c7;
+    --sb-size: 5px;
+}
+
+.image-profile-hub::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+  
+.image-profile-hub ::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 18px;
+}
+  
+.image-profile-hub::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 18px;
+}
+  
+@supports not selector(::-webkit-scrollbar) {
+.image-profile-hub {
+    scrollbar-color: var(--sb-thumb-color)
+                    var(--sb-track-color);
+}
+}
+
+.profile{
+    width: 100px;
+    background-color: #e2e0e0;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-position: center;
+}
+
 .color-header-modal{
     background-color: rgb(28, 28, 219);
     height: 8vh;
@@ -182,7 +284,7 @@ a{
 }
 
 .profile-player{
-    background-color: rgb(116, 118, 119);
+    background-color: rgb(217, 221, 224);
     width: 35%;
     aspect-ratio: 1/1;
     border-radius: 50%;
@@ -237,4 +339,16 @@ a{
 
 .info-player button:hover{
     background-color: rgb(17, 17, 145);
+}
+
+.popup-message {
+    position: absolute;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    z-index: 4;
 }
