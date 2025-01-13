@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnConcluir.addEventListener("click", () => {
         if (inputNick.value.trim() && targetUrl) {
-            window.location.href = targetUrl
+            const nick = inputNick.value.trim()
+            const color = colorPicker.value
+            const urlWithParams = `${targetUrl}?nick=${encodeURIComponent(nick)}&color=${encodeURIComponent(color)}`
+            window.location.href = urlWithParams
         }
     })
 })

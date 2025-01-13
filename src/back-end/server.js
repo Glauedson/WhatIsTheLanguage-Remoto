@@ -15,6 +15,7 @@ const pool = new Pool({
   port: 5432, 
 });
 
+
 // Ver se foi possivel conectar ao banco de dados
 pool.connect((err) => {
   if (err) {
@@ -23,6 +24,7 @@ pool.connect((err) => {
     console.log('Conectado ao PostgreSQL.')
   }
 });
+
 
 // Endpoint principal dos dados de todas as linguagens
 app.get('/dados', async (req, res) => {
@@ -43,6 +45,29 @@ app.get('/dados', async (req, res) => {
     }
   } catch (err) {
     res.status(500).send('Erro ao buscar dados: ' + err.message)
+  }
+})
+
+
+// Endpoint dos avatares dos players
+app.get('/avatars', async (req, res) => {
+  const { id } = req.query 
+
+  try {
+    let result;
+    if (id) {
+      result = await pool.query('SELECT * FROM images WHERE id = $1', [id]) 
+    } else {
+      result = await pool.query('SELECT * FROM images') 
+    }
+
+    if (result.rows.length === 0) {
+      return res.status(404).send('Nenhum avatar encontrado para o id fornecido')
+    }
+
+    res.json(result.rows) 
+  } catch (err) {
+    res.status(500).send('Erro ao buscar avatares: ' + err.message)
   }
 })
 
