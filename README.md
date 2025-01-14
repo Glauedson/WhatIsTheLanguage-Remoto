@@ -38,6 +38,10 @@ O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha 
 - **APIs**:
   - Endpoints proprios com dados de todas as linguagens
 
+   - API [DiceBear](https://www.dicebear.com/why-dicebear/) para fornecer URL de imagens para os Avatares
+
+     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDtN6-JKbM_CTzw_DwzNqeO7iycQ3_AQMcVQ&s" width=45> 
+    
 
 ## </> Endpoints da API
 
@@ -66,6 +70,118 @@ O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha 
     "dica5": "# código em Python"
 }
 ```
+
+### 2. **Obter Avatares (foto de perfil) dos jogadores**
+**Endpoint:** `/avatars`
+
+**Parâmetros de Consulta:**
+- `id` ID do avatar.
+
+**Exemplo de Requisição:**
+```http
+  http://localhost:3000/avatars?id=1
+```
+
+**Exemplo de Resposta:**
+```json
+[
+  {
+    "id": 1,
+    "image_url": "https://api.dicebear.com/9.x/adventurer/svg?seed=Jessica&hair=long22&hairColor=592454"
+  }
+]
+```
+
+### 3. **Obter Ranking de Jogadores**
+**Endpoint:** `/ranking`
+
+**Exemplo de Requisição:**
+```http
+  http://localhost:3000/ranking
+```
+
+**Exemplo de Resposta:**
+```json
+{
+  "message": "Ranking obtido com sucesso!",
+  "data": [
+    {
+      "id": 2,
+      "nick": "Glauedson",
+      "cor": "#e4f312",
+      "avatar": "https://api.dicebear.com/9.x/adventurer/svg?seed=Eliza&earrings[]&earringsProbability=100&glassesProbability=100&hair=short08&hairColor=6a4e35&mouth=variant02&skinColor=f2d3b1",
+      "pontos": 14000,
+      "modo_jogo": "Pelo Codigo"
+    }
+  ]
+}
+```
+
+## </> Estrutura do Banco de Dados
+
+### Tabelas
+
+#### 1. **Tabela `linguagens`**
+Armazena as linguagens e algumas informações adicionais pro front.
+
+```sql
+CREATE TABLE linguagens (
+    id SERIAL PRIMARY KEY, 
+    nome VARCHAR(50) NOT NULL,
+    foto_url TEXT NOT NULL, 
+    tipo VARCHAR(20) NOT NULL,
+    dica1 TEXT NOT NULL,
+    dica2 TEXT NOT NULL,
+    dica3 TEXT NOT NULL,
+    dica4 TEXT NOT NULL,
+    dica5 TEXT NOT NULL
+);
+```
+
+**Colunas:**
+- `id`: Identificador único.
+- `nome`: Nome da linguagem (ex.: C#, Java, Python).
+- `foto_url`: URL da logo da linguagem.
+- `tipo`: Tipo da linguagem ( ex.: Back, Front, Bd).
+- `dica`: de 1 a 4 são as linhas de codigo de dicas pro jogador.
+- `dica5`: Linha final que aparece quando o jogador erra todas as tenativas.
+
+#### 2. **Tabela `imagens`**
+Armazena os links das imagens de avatares pro jogador escolher, as imagens foram pegas no site da API [DiceBear](https://www.dicebear.com/why-dicebear/).
+
+```sql
+CREATE TABLE images (
+    id SERIAL PRIMARY KEY, 
+    image_url TEXT NOT NULL
+);
+```
+
+**Colunas:**
+- `id`: Identificador único do Avatar.
+- `image_url`: URL do Avatar.
+
+#### 3. **Tabela `ranking`**
+Registra os dados e a pontuação de cada jogador.
+
+```sql
+CREATE TABLE ranking (
+    id SERIAL PRIMARY KEY,
+    nick VARCHAR(100) NOT NULL,
+    cor VARCHAR(7) NOT NULL,
+    avatar TEXT NOT NULL,
+    pontos INT NOT NULL DEFAULT 0,
+    modo_jogo VARCHAR(50) NOT NULL
+);
+```
+
+**Colunas:**
+- `id`: Identificador único para cada registro.
+- `nick`: Nome do jogador.
+- `cor`: Cor escolhida (no formato hexadecimal, como #FFFFFF).
+- `avatar`: URL do avatar.
+- `pontos`: Pontos acumulados pelo jogador.
+- `modo_jogo`: Modo de jogo (ex: Pelo codigo, Pela Logo).
+
 
 ## </> Como Executar o Projeto Localmente
 
