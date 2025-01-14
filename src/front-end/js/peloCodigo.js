@@ -76,7 +76,7 @@ function adicionarDica() {
     adicionarDicaAnimada(dicas[dicasExibidas])
     dicasExibidas++
     if (dicasExibidas === dicas.length) {
-      alert('Você perdeu o jogo!')
+      encerrarJogo()
     }
   }
 }
@@ -104,7 +104,8 @@ async function obterRespostaDaAPI() {
       adicionarDica()
       atualizarModal(data)
     } else {
-      console.log('Nenhum dado recebido da API.')
+      console.log('Fim de jogo.')
+      encerrarJogo()
     }
   } catch (error) {
     console.error('Erro ao buscar dados da API:', error)
@@ -157,3 +158,33 @@ botaoContinuar.addEventListener('click', () => {
   generatePlayerLife()
   obterRespostaDaAPI()
 })
+
+function encerrarJogo() {
+  const params = new URLSearchParams(window.location.search)
+
+  const nick = params.get('nick')
+  const color = params.get('color')
+  const avatar = params.get('avatar')
+  const modoDeJogo = 'Pelo Codigo'
+
+   fetch('http://localhost:3000/ranking', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      nick: nick,
+      cor: color,
+      avatar: avatar,
+      pontos: pontos,
+      modo_jogo: modoDeJogo,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Dados enviados e salvos com sucesso:', data)
+  })
+  .catch((error) => {
+    console.error('Erro ao enviar dados para o servidor:', error)
+  })
+}

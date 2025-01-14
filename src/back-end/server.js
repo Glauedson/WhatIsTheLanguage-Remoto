@@ -2,7 +2,8 @@ const cors = require('cors')
 const express = require('express');
 const { Pool } = require('pg'); 
 const app = express();
-app.use(cors())
+app.use(cors());
+app.use(express.json());
 
 // Dados pra acessar o banco
 // Como informado do ReadME, você deve alterar
@@ -27,6 +28,7 @@ pool.connect((err) => {
 
 
 // Endpoint principal dos dados de todas as linguagens
+// http://localhost:3000/dados
 app.get('/dados', async (req, res) => {
   const { id } = req.query 
   
@@ -50,6 +52,7 @@ app.get('/dados', async (req, res) => {
 
 
 // Endpoint dos avatares dos players
+// http://localhost:3000/avatars
 app.get('/avatars', async (req, res) => {
   const { id } = req.query 
 
@@ -71,6 +74,41 @@ app.get('/avatars', async (req, res) => {
   }
 })
 
+
+// Rota para obter os dados do ranking
+// http://localhost:3000/ranking
+app.get('/ranking', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM ranking ORDER BY pontos DESC');
+
+    res.status(200).json({
+      message: 'Ranking obtido com sucesso!',
+      data: result.rows,
+    });
+  } catch (err) {
+    res.status(500).send('Erro ao obter dados do ranking: ' + err.message);
+  }
+});
+
+
+// Endpoint para inserir dados no ranking
+app.post('/ranking', async (req, res) => {
+  const { nick, cor, avatar, pontos, modo_jogo } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO ranking (nick, cor, avatar, pontos, modo_jogo) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [nick, cor, avatar, pontos || 0, modo_jogo]
+    );
+
+    res.status(201).json({
+      message: 'Dados inseridos com sucesso!',
+      data: result.rows[0],
+    });
+  } catch (err) {
+    res.status(500).send('Erro ao inserir dados no ranking: ' + err.message);
+  }
+});
 
 // Servidor
 const PORT = 3000;

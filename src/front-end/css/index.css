@@ -236,6 +236,7 @@ a{
     aspect-ratio: 1/1;
     border-radius: 50%;
     background-position: center;
+    cursor: pointer;
 }
 
 .color-header-modal{
