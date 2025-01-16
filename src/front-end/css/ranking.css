@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    color: white;
+}
+
+body{
+    background-color: #0B0B0E;
+}
+
+header {
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main{
+    background-color:#0a0a0c;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.header-ranking{
+    background-color: white;
+    text-align: center;
+}
+
+.header-ranking h1{
+    color: black;
+    padding: 10px;
+}
+
+.ranking-hub{
+    height: 70vh;
+    overflow: auto;
+    padding: 15px;
+    --sb-track-color: #292a2b;
+    --sb-thumb-color: #2426bb;
+    --sb-size: 6px;
+}
+
+.ranking-hub::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+  
+.ranking-hub::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 1px;
+}
+  
+.ranking-hub::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 1px;
+}
+  
+@supports not selector(::-webkit-scrollbar) {
+.ranking-hub {
+        scrollbar-color: var(--sb-thumb-color)
+                       var(--sb-track-color);
+    }
+}
+
+.profile-ranking-content{
+    background-color: #20202C;
+    margin-bottom: 5px;
+    padding: 20px;
+    display: flex;
+}
+
+.color-profile{
+    width: 1.7vw;
+    min-width: 13px;
+}
+
+.avatar-profile{
+    width: 90px;
+    min-width: 70px;
+    background-color: #e9e9ee;
+    aspect-ratio: 1/1;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
+
+.profile-player-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.name-score{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.name-score p {
+    color: #b1b1b1;
+    font-size: clamp(11px, 3vw, 15px);
+}
+
+.player-score{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.player-score h1 {
+    font-size: clamp(21px, 6vw, 40px);
+    
+}
+
+.player-score h1:first-child{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-score h1:last-child{
+    color: gold;
+    text-shadow: 0px 0px 10px gold;
+}
