@@ -21,9 +21,27 @@ Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o 
 O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha qual é a linguagem de progamação através de dicas, o usuário pode escolher entre 2 modos de jogo, **Advinhe Pela Logo** ou **Advinhe Pelo Código**, ambos os modos possuem sistemas de pontos e vidas, o usuário ganha pontos por acertar a advinhar a linguagem e perde vidas toda vez que erra. O jogo encerra quando o usuário perder todas as vidas ou acertando todas as linguagens, após isso aparecerá uma tela **Ranking** de todos os jogadores com seus nomes e suas pontuações.
 
 ## </> Screenshots Do Projeto
+**Screenshots Mobile - (Clique nas imagens para amplia-las)**
 
-**Modo De Jogo -** *Pelo Codigo* - Desktop
-![modo de pelo codigo](/readme/peloCodigo.png)
+<div class="mobile">
+  <img src="readme/Mobile/index.html(Samsung Galaxy S20 Ultra).png" alt="Pagina Inicial" width="150"/>
+  <img src="readme/Mobile/perfil_index.html(Samsung Galaxy S20 Ultra).png" alt="Criar perfil" width="150"/>
+  <img src="readme/Mobile/PeloCodigo-mobile.png" alt="Tela inicial de Pelo Codigo" width="150"/>
+  <img src="readme/Mobile/Pelo Codigo - mobile - acerto.png" alt="modal de acerto" width="150"/>
+  <img src="readme/Mobile/ranking-mobile.png" alt="ranking geral" width="150"/>
+</div>
+
+**Screenshots Desktop - (Clique nas imagens para amplia-las)**
+
+<div class="desktop">
+  <img src="readme/Desktop/index-Desktop.png" alt="Pagina Inicial" width="350"/>
+  <img src="readme/Desktop/index-destop-perfil.png" alt="Criar Perfil" width="350"/>
+  <img src="readme/Desktop/pelocodigo-desktop.png" alt="Tela incial de Pelo Codigo" width="350"/>
+  <img src="readme/Desktop/pelocodigo-desktop-acerto.png" alt="Modal Acerto" width="350"/>
+  <img src="readme/Desktop/ranking-desktop.png" alt="Ranking geral" width="350"/>
+</div>
+
+
 
 ## </> Tecnologias Utilizadas
 
