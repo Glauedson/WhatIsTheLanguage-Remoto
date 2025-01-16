@@ -1,9 +1,4 @@
-const colorPicker = document.getElementById('colorPicker')
-const headerModal = document.querySelector('.color-header-modal')
-
-colorPicker.addEventListener('input', () => {
-    headerModal.style.backgroundColor = colorPicker.value
-})
+import { getSelectedImage, modalPerfil } from './feature/modals.js'
 
 document.addEventListener("DOMContentLoaded", () => {
     const link = document.getElementById("linkPeloCodigo")
@@ -11,90 +6,62 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnConcluir = document.getElementById("btnConcluir")
     const inputNick = document.querySelector(".info-player input")
     const profilePlayer = document.querySelector('.profile-player')
-    const inputContainer = document.querySelector('.info-player') // Para mensagens no input
-    let targetUrl = ""
-    let selectedImage = null // Variável para armazenar a imagem escolhida
-
-    link?.addEventListener("click", event => {
-        event.preventDefault()
-        targetUrl = link.href
-        modal.classList.add("block")
-    })
-
-    btnConcluir.addEventListener("click", () => {
-        const nick = inputNick.value.trim()
-        const color = colorPicker.value
-
-        let hasError = false
-
-        // Remove mensagens de erro anteriores
-        removePopups()
-
-        if (!nick) {
-            showPopup(inputNick, 'Preencha o nome')
-            hasError = true
-        }
-
-        if (!selectedImage) {
-            showPopup(profilePlayer, 'Selecione uma imagem')
-            hasError = true
-        }
-
-        if (!hasError) {
-            const urlWithParams = `${targetUrl}?nick=${encodeURIComponent(nick)}&color=${encodeURIComponent(color)}&avatar=${encodeURIComponent(selectedImage)}`
-            window.location.href = urlWithParams
-        }
-    })
-
+    const inputContainer = document.querySelector('.info-player')
+    const colorPicker = document.getElementById('colorPicker')
+    const headerModal = document.querySelector('.color-header-modal')
     const btn = document.querySelector('.profile-player button')
-    const modalPerfil = document.getElementById('modal-perfil')
+    const modalPerfilEl = document.getElementById('modal-perfil')
     const closeBtn = document.querySelector('.close-btn')
     const imageProfileHub = document.querySelector('.image-profile-hub')
-
-    btn.addEventListener('click', () => {
-        fetch('http://localhost:3000/avatars')
-            .then(response => response.json())
-            .then(data => {
-                imageProfileHub.innerHTML = ''
-
-                data.forEach(profile => {
-                    const profileDiv = document.createElement('div')
-                    profileDiv.classList.add('profile')
-                    profileDiv.style.backgroundImage = `url(${profile.image_url})`
-
-                    // Adiciona evento de clique para selecionar o avatar
-                    profileDiv.addEventListener('click', () => {
-                        selectedImage = profile.image_url
-                        profilePlayer.style.backgroundImage = `url(${profile.image_url})`
-                        modalPerfil.style.display = 'none' // Fecha o modal após selecionar
-                    })
-
-                    imageProfileHub.appendChild(profileDiv)
-                })
-
-                modalPerfil.style.display = 'block'
-            })
-            .catch(error => {
-                console.error('Erro ao buscar os perfis', error)
-            })
+  
+    let targetUrl = ""
+  
+    modalPerfil(btn, modalPerfilEl, closeBtn, imageProfileHub, profilePlayer)
+  
+    colorPicker.addEventListener('input', () => {
+      headerModal.style.backgroundColor = colorPicker.value
     })
-
-    closeBtn.addEventListener('click', () => {
-        modalPerfil.style.display = 'none'
+  
+    link?.addEventListener("click", event => {
+      event.preventDefault()
+      targetUrl = link.href
+      modal.classList.add("block")
     })
-
-    // Função para exibir o popup
+  
+    btnConcluir.addEventListener("click", () => {
+      const nick = inputNick.value.trim()
+      const color = colorPicker.value
+      const selectedImage = getSelectedImage()
+      let hasError = false
+  
+      removePopups()
+  
+      if (!nick) {
+        showPopup(inputNick, 'Preencha o nome')
+        hasError = true
+      }
+  
+      if (!selectedImage) {
+        showPopup(profilePlayer, 'Selecione uma imagem')
+        hasError = true
+      }
+  
+      if (!hasError) {
+        const urlWithParams = `${targetUrl}?nick=${encodeURIComponent(nick)}&color=${encodeURIComponent(color)}&avatar=${encodeURIComponent(selectedImage)}`
+        window.location.href = urlWithParams
+      }
+    })
+  
     function showPopup(element, message) {
-        const popup = document.createElement('div')
-        popup.classList.add('popup-message')
-        popup.textContent = message
-        element.parentNode.appendChild(popup) // Adiciona após o elemento
-        popup.style.left = `${element.offsetLeft}px`
-        popup.style.top = `${element.offsetTop - popup.offsetHeight - 10}px` // Acima do elemento
+      const popup = document.createElement('div')
+      popup.classList.add('popup-message')
+      popup.textContent = message
+      element.parentNode.appendChild(popup)
+      popup.style.left = `${element.offsetLeft}px`
+      popup.style.top = `${element.offsetTop - popup.offsetHeight - 10}px`
     }
-
-    // Função para remover popups existentes
+  
     function removePopups() {
-        document.querySelectorAll('.popup-message').forEach(popup => popup.remove())
+      document.querySelectorAll('.popup-message').forEach(popup => popup.remove())
     }
-})
+  })

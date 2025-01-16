@@ -1,7 +1,7 @@
-import { sortearNumero } from '../js/feature/API.js'
-import { generatePlayerLife, diminuirVida } from '../js/feature/PlayerLife.js'
-import { setupLanguageInput } from '../js/feature/inputLanguage.js'
-import { mostrarModal, esconderModal, atualizarModal } from '../js/feature/modals.js'
+import { sortearNumero } from './feature/API.js'
+import { generatePlayerLife, diminuirVida } from './feature/PlayerLife.js'
+import { setupLanguageInput } from './feature/inputLanguage.js'
+import { mostrarModal, esconderModal, atualizarModal } from './feature/modals.js'
 
 function Game() {
   console.log(sortearNumero())
