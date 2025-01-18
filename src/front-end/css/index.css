@@ -191,7 +191,7 @@ a{
     margin: 15% auto;
     padding: 20px;
     width: 80%;
-    max-width: 300px;
+    max-width: 361px;
 }
 
 .close-btn {
@@ -203,7 +203,7 @@ a{
 }
 
 .image-profile-hub{
-    height: 230px;
+    height: 339px;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
