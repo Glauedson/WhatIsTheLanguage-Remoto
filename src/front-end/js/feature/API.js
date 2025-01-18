@@ -2,7 +2,7 @@
 // um numero é sorteado e depois é puxado na api, esse numero nunca vai
 // se repetir
 
-const max = 7
+const max = 17
 const numerosSorteados = new Set()
 
 export async function sortearNumero() {

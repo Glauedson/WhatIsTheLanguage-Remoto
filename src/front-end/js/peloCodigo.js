@@ -10,6 +10,8 @@ function Game() {
 generatePlayerLife()
 window.Game = Game
 
+// Atualmente são 17 linguagens
+// Espero que não seja tão dificil
 const linguagens = [
   "Python",
   "JavaScript",
@@ -17,7 +19,17 @@ const linguagens = [
   "C#",
   "SQL",
   "Ruby",
-  "PHP"
+  "PHP",
+  "Go",
+  "Kotlin",
+  "Swift",
+  "C++",
+  "TypeScript",
+  "Rust",
+  "R",
+  "Shell Script",
+  "Lua",
+  "C"
 ]
 
 setupLanguageInput('campoEntrada', 'listaSugestoes', linguagens)
