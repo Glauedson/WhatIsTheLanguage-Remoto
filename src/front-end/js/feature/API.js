@@ -18,8 +18,6 @@ export async function sortearNumero() {
   } while (numerosSorteados.has(numeroSorteado))
 
   numerosSorteados.add(numeroSorteado)
-  console.log('Número sorteado:', numeroSorteado)
-
   
   try {
     const response = await fetch(`http://localhost:3000/dados?id=${numeroSorteado}`)
@@ -29,7 +27,7 @@ export async function sortearNumero() {
     }
 
     const data = await response.json()
-    console.log(data)
+    
     return data
   } catch (err) {
     console.error('Erro ao acessar a API:', err.message)
