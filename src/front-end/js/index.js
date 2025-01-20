@@ -63,12 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.createElement('div')
     popup.classList.add('popup-message')
     popup.textContent = message
+
     element.parentNode.appendChild(popup)
+
     popup.style.left = `${element.offsetLeft}px`
     popup.style.top = `${element.offsetTop - popup.offsetHeight - 10}px`
 
     setTimeout(() => {
-      popup.remove()
+        popup.classList.add('show')
+    }, 10);
+
+    setTimeout(() => {
+        popup.classList.remove('show');
+        setTimeout(() => popup.remove(), 300)
     }, 4000)
   }
 

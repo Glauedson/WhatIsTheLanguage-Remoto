@@ -359,4 +359,21 @@ a{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     white-space: nowrap;
     z-index: 4;
-}
+    opacity: 0; /* Começa invisível */
+    transform: translateY(-10px); /* Ajuste inicial */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .popup-message.show {
+    opacity: 1; /* Aparece com transição */
+    transform: translateY(0); /* Fica na posição correta */
+    animation: shake 0.4s ease; /* Aplica a animação de agitação */
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
