@@ -1,0 +1,59 @@
+/*Animação que balança levemente da esquerda pra direita*/
+/*Recomendado para popups ou qualquer outra coisa que aprecise*/
+/*Chamar atenção do player*/
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+
+/*Animação basica do background de gradiend com 3 cores*/
+/*Recomendado para botões de Continue*/
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/*Animação da logo sair do centro e ir para esquerda*/
+/*Recomendado apenas para a logo*/
+@keyframes slideToLeft {
+    0% {
+        transform: translateX(0); 
+    }
+    100% {
+        transform: translateX(-42vw); 
+    }
+}
+
+
+/*Animação dos corações aparecendo em ordem*/
+/*Recomendado apenas para os corações*/
+@keyframes slide-in {
+    0% {
+      transform: translateX(-50px); 
+      opacity: 0; 
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1; 
+    }
+}
+
+
+/*Animação de "brilho" passando da esquerda pra direita*/
+/*Usado da div de demonstração de pontos ganhos*/
+@keyframes load89234 {
+    100% {
+      background-position: -100% 0;
+    }
+}

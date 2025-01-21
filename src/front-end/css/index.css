@@ -361,18 +361,6 @@ a{
     transform: scale(0.95);
 }
 
-@keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 .popup-message {
     position: absolute;
     background-color: #ff4d4d;
@@ -392,12 +380,4 @@ a{
     opacity: 1; 
     transform: translateY(0); 
     animation: shake 0.4s ease;
-  }
-
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
   }

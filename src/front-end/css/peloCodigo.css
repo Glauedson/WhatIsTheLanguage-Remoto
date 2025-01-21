@@ -24,15 +24,6 @@ header {
   animation: slideToLeft 1.5s ease-in-out forwards;
 }
 
-@keyframes slideToLeft {
-  0% {
-      transform: translateX(0); 
-  }
-  100% {
-      transform: translateX(-42vw); 
-  }
-}
-
 main{
     background-color:#0a0a0c;
     height: 90vh;
@@ -93,17 +84,6 @@ main{
   animation-delay: 1.5s; 
 }
 
-
-@keyframes slide-in {
-  0% {
-    transform: translateX(-50px); 
-    opacity: 0; 
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1; 
-  }
-}
 /* ----Animação dos corações------*/
 
 .code-box{
@@ -333,11 +313,4 @@ main{
 
 .modal-points p {
   font-weight: bolder;
-}
-
-
-@keyframes load89234 {
-  100% {
-    background-position: -100% 0;
-  }
 }
