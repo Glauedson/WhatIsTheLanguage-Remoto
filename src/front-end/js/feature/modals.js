@@ -57,3 +57,22 @@ export function modalPerfil(btn, modalPerfil, closeBtn, imageProfileHub, profile
 export function getSelectedImage() {
   return selectedImage
 }
+
+export function ModalFim(modal, nome, color, pontos, avatar) {
+  modal.style.display = 'block'
+  const nomeElemento = modal.querySelector('.player-score h1:nth-child(1)')
+  const pontosElemento = modal.querySelector('.player-score h1:nth-child(2)')
+  const corElemento = modal.querySelector('.color-profile')
+  const avatarElemento = modal.querySelector('.avatar-profile')
+  nomeElemento.textContent = nome
+  pontosElemento.textContent = pontos
+  corElemento.style.backgroundColor = color
+  avatarElemento.style.backgroundImage = `url(${avatar})`
+}
+
+export function configurarBotaoConcluir(modal, botaoConcluir, destino) {
+  botaoConcluir.addEventListener('click', () => {
+    modal.style.display = 'none'
+    window.location.href = destino
+  })
+}

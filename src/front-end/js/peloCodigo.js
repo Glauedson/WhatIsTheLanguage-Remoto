@@ -1,7 +1,7 @@
 import { sortearNumero } from './feature/API.js'
 import { generatePlayerLife, diminuirVida } from './feature/PlayerLife.js'
 import { setupLanguageInput } from './feature/inputLanguage.js'
-import { mostrarModal, esconderModal, atualizarModal } from './feature/modals.js'
+import { mostrarModal, esconderModal, atualizarModal, ModalFim, configurarBotaoConcluir } from './feature/modals.js'
 
 function Game() {
   console.log(sortearNumero())
@@ -149,12 +149,19 @@ function encerrarJogo() {
   const color = params.get('color')
   const avatar = params.get('avatar')
   const modoDeJogo = 'Pelo Codigo'
+
   fetch('http://localhost:3000/ranking', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nick, cor: color, avatar, pontos, modo_jogo: modoDeJogo })
   })
   .then(response => response.json())
+  .then(() => {
+    const modalFim = document.getElementById('modalFim')
+    const botaoConcluir = document.getElementById('btnConcluir')
+    ModalFim(modalFim, nick, color, pontos, avatar)
+    configurarBotaoConcluir(modalFim, botaoConcluir, '../../../index.html')
+  })
   .catch(console.error)
 }
 
