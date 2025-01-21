@@ -19,9 +19,10 @@ body{
 
 header{
     background-color: #0B0B0E;
+    height: 10vh;
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding-top: 5px;
 }
 
 main{
@@ -161,7 +162,9 @@ a{
 }
 
 .profile-player > button:hover{
-    background-color: rgb(184, 185, 185);
+    background-color: rgb(203, 207, 207);
+    transition: 0.5s;
+    transform: scale(1.1);
 }
 
 /* --- Modal de foto de perfil ---*/
@@ -277,11 +280,16 @@ a{
     z-index: 2;
 }
 
+.color-picker-container input[type="color"]:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
 .color-picker-container input[type="color"]::before {
     content: '\1F3A8'; 
     font-size: 14px;
     position: absolute;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(253, 253, 253);
     padding: 7px;
     top: 50%;
     left: 50%;
@@ -334,7 +342,6 @@ a{
 }
 
 .info-player button{
-    background-color: rgb(32, 32, 197);
     color: white;
     font-weight: bold;
     padding: 20px 0px;
@@ -343,10 +350,27 @@ a{
     border-radius: 10px;
     cursor: pointer;
     border: none;
+    background: linear-gradient(90deg, #3230cc, #2668a5, #310adb);
+    background-size: 300% 100%;
+    animation: gradientMove 3s linear infinite;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.info-player button:hover{
-    background-color: rgb(17, 17, 145);
+.info-player button:active{
+    transform: scale(0.95);
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .popup-message {
@@ -359,15 +383,15 @@ a{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     white-space: nowrap;
     z-index: 4;
-    opacity: 0; /* Começa invisível */
-    transform: translateY(-10px); /* Ajuste inicial */
+    opacity: 0; 
+    transform: translateY(-10px); 
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
   
   .popup-message.show {
-    opacity: 1; /* Aparece com transição */
-    transform: translateY(0); /* Fica na posição correta */
-    animation: shake 0.4s ease; /* Aplica a animação de agitação */
+    opacity: 1; 
+    transform: translateY(0); 
+    animation: shake 0.4s ease;
   }
 
   @keyframes shake {
