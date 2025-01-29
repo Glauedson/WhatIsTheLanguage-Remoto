@@ -129,14 +129,29 @@ async function obterRespostaDaAPI() {
   }
 }
 
+const somErro = new Audio('../assets/sounds/erro-effect.mp3')
 function processarErro() {
   tentativas++
   diminuirVida()
   if (tentativas <= dicas.length) {
     adicionarDica()
   }
+
+  somErro.currentTime = 0
+  somErro.volume = 0.3
+  somErro.play()
+
+  const terminal = document.querySelector('.code-box')
+  terminal.classList.add('shake')
+
+  setTimeout(() => {
+    terminal.classList.remove('shake')
+  
+  }, 400)
 }
 
+
+const somSucess = new Audio('../assets/sounds/sucess-effect.mp3')
 botaoEnviar.addEventListener('click', () => {
   const valorDigitado = campoEntrada.value.trim()
   campoEntrada.value = ''
@@ -148,6 +163,11 @@ botaoEnviar.addEventListener('click', () => {
     atualizarPontuacao()
     mostrarModal(modal)
     atualizarModal(respostaDaAPIData, pontosGanhos, modalElements)
+
+    somSucess.currentTime = 0 
+    somSucess.play()
+    somSucess.volume = 0.5
+
   } else {
     processarErro()
   }

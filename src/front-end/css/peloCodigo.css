@@ -25,6 +25,7 @@ header {
 }
 
 main{
+    width: 100vw;
     background-color:#0a0a0c;
     height: 90vh;
     display: flex;
@@ -35,6 +36,11 @@ main{
 
 .pulsando {
   animation: pulseRed 1s infinite;
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+  overflow: hidden;
 }
 
 .header-code-box{
