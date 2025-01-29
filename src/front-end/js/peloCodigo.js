@@ -58,6 +58,10 @@ let dicasExibidas = 0
 function limparDicas() {
   codeBox.innerHTML = ''
   dicasExibidas = 0
+  document.querySelector('main').classList.remove('pulsando')
+  document.querySelectorAll('.life-player >img').forEach(heart => {
+    heart.classList.remove('pulsando-heart', 'pulsando-soft')
+  })
 }
 
 function atualizarPontuacao() {
@@ -84,6 +88,22 @@ function adicionarDicaAnimada(dicaTexto) {
 function adicionarDica() {
   if (dicasExibidas < dicas.length) {
     adicionarDicaAnimada(dicas[dicasExibidas])
+    if (dicasExibidas === 2) { 
+      document.querySelectorAll('.life-player > img').forEach(heart => {
+        heart.classList.add('pulsando-soft')
+      })
+    }
+
+    if (dicasExibidas === 3) { 
+      document.querySelectorAll('.life-player > img').forEach(heart => {
+        heart.classList.remove('pulsando-soft')
+      })
+
+      document.querySelector('main').classList.add('pulsando')
+      document.querySelectorAll('.life-player > img').forEach(heart => {
+        heart.classList.add('pulsando-heart')
+      })
+    }
     dicasExibidas++
     if (dicasExibidas === dicas.length) {
       encerrarJogo()

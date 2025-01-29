@@ -33,6 +33,10 @@ main{
     justify-content: center;
 }
 
+.pulsando {
+  animation: pulseRed 1s infinite;
+}
+
 .header-code-box{
     width: 100%;
     max-width: 600px;
@@ -81,6 +85,14 @@ main{
 
 .life-player:nth-child(2) {
   animation-delay: 1.5s; 
+}
+
+.pulsando-heart {
+  animation: pulseHeart 1s infinite;
+}
+
+.pulsando-soft {
+  animation: pulseSoft 1s infinite;
 }
 
 .code-box{

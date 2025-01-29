@@ -57,3 +57,50 @@
       background-position: -100% 0;
     }
 }
+
+/*Animação de quando o player tá com 1 coração de vida*/
+/*Essa animação é apenas pro background*/
+@keyframes pulseRed {
+    0% {
+      box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+    50% {
+      box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.8);
+    }
+    100% {
+      box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+}
+
+/*Animação de coração pulsando quando tá com 1 vida*/
+@keyframes pulseHeart {
+    0% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.295));
+    }
+    50% {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.63));
+    }
+    100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.288));
+    }
+}
+
+/*Animação para o coração, animação mais leve*/
+/*Usada quando o player fica com 2 corações*/
+@keyframes pulseSoft {
+    0% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.3));
+    }
+    50% {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+    }
+    100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.3));
+    }
+}
