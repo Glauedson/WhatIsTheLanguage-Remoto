@@ -4,7 +4,7 @@
 ![logo](src/front-end/assets/icons/logo-large.png)
 </div>
 
-Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um site Game interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf).
+Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um Game Web interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf).
 
 ## </> Topicos
 
@@ -13,12 +13,13 @@ Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o 
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Endpoints da API](#endpoints-da-api)
 - [Como Executar o Projeto Localmente](#como-executar-o-projeto-localmente)
+- [Como Configurar o Banco De Dados](#como-configurar-o-banco-de-dados)
 - [Licença](#licença)
 - [Contato](#contato)
 
 ## </> Descrição do Projeto
 
-O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha qual é a linguagem de progamação através de dicas, o usuário pode escolher entre 2 modos de jogo, **Advinhe Pela Logo** ou **Advinhe Pelo Código**, ambos os modos possuem sistemas de pontos e vidas, o usuário ganha pontos por acertar a advinhar a linguagem e perde vidas toda vez que erra. O jogo encerra quando o usuário perder todas as vidas ou acertando todas as linguagens, após isso aparecerá uma tela **Ranking** de todos os jogadores com seus nomes e suas pontuações.
+O **What Is The Language**  ou **WITL** é um Game Web onde o usuário advinha qual é a linguagem de progamação através de dicas, o usuário pode escolher entre 2 modos de jogo, **Advinhe Pela Logo** ou **Advinhe Pelo Código**, ambos os modos possuem sistemas de pontos e vidas, o usuário ganha pontos por acertar a advinhar a linguagem e perde vidas toda vez que erra. O jogo encerra quando o usuário perder todas as vidas ou acertando todas as linguagens, após isso aparecerá uma tela **Ranking** de todos os jogadores com seus nomes e suas pontuações.
 
 ## </> Screenshots Do Projeto
 **Screenshots Mobile - (Clique nas imagens para amplia-las)**
@@ -29,6 +30,7 @@ O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha 
   <img src="readme/Mobile/PeloCodigo-mobile.png" alt="Tela inicial de Pelo Codigo" width="150"/>
   <img src="readme/Mobile/Pelo Codigo - mobile - acerto.png" alt="modal de acerto" width="150"/>
   <img src="readme/Mobile/ranking-mobile.png" alt="ranking geral" width="150"/>
+  <img src="readme/Mobile/PeloCodigo-Fim.png" alt="fim" width="150"/>
 </div>
 
 **Screenshots Desktop - (Clique nas imagens para amplia-las)**
@@ -39,6 +41,7 @@ O **What Is The Language**  ou **WITL** é um site Game onde o usuário advinha 
   <img src="readme/Desktop/pelocodigo-desktop.png" alt="Tela incial de Pelo Codigo" width="350"/>
   <img src="readme/Desktop/pelocodigo-desktop-acerto.png" alt="Modal Acerto" width="350"/>
   <img src="readme/Desktop/ranking-desktop.png" alt="Ranking geral" width="350"/>
+   <img src="readme/Desktop/PeloCodigo-Fim-Desktop.png" alt="Fim" width="350"/>
 </div>
 
 
@@ -200,7 +203,6 @@ CREATE TABLE ranking (
 - `pontos`: Pontos acumulados pelo jogador.
 - `modo_jogo`: Modo de jogo (ex: Pelo codigo, Pela Logo).
 
-
 ## </> Como Executar o Projeto Localmente
 
 1. Clone este repositório:
@@ -219,6 +221,90 @@ CREATE TABLE ranking (
      node src/back-end/server.js
      ```
 4. Inicie o frontend abrindo o arquivo `index.html` em um navegador.
+
+## </> Como Configurar o Banco De Dados
+
+Como configurar o banco de dados PostgreSQL e executar os scripts `create.sql` e `insert.sql` para iniciar corretamente o jogo.
+
+### 1. Instalar o PostgreSQL
+
+Se ainda não possui o PostgreSQL instalado, siga os passos abaixo:
+
+1. Baixe o instalador do PostgreSQL no site oficial: 
+
+    ```http
+    https://www.postgresql.org/download/
+    ```
+
+2. Durante a instalação, defina uma senha para o usuário postgres.
+
+3. Certifique-se de instalar o **pgAdmin** para gerenciar o banco de forma visual (opcional).
+
+### 2. Criando o Banco de Dados
+
+Após instalar o PostgreSQL, siga os passos para criar o banco de dados:
+
+**Usando o pgAdmin:**
+
+1. Abra o **pgAdmin**.
+
+2. Conecte-se ao servidor PostgreSQL.
+
+3. Clique com o botão direito em **Databases** e selecione **Create > Database**.
+
+4. No campo **Database name**, insira `witl` e clique em **Save**.
+
+**Usando o terminal (psql):**
+
+1. Abra o terminal e execute:
+
+    ```ps
+    psql -U postgres
+    ``` 
+2. Digite a senha do usuário `postgres`.
+
+3. Crie o banco de dados com:
+    ```sql
+    CREATE DATABASE witl;
+    ```
+
+### 3. Executando os Scripts SQL
+
+Agora, vamos criar as tabelas e inserir os dados iniciais.
+
+**Usando o pgAdmin:**
+
+1. No **pgAdmin**, expanda **Databases > witl > Schemas > public**.
+
+2. Clique em **Query Tool**.
+
+3. Copie e cole o conteúdo do arquivo `create.sql` e execute.
+
+4. Faça o mesmo para `insert.sql`.
+
+**Usando o terminal (psql):**
+
+1. No terminal, conecte-se ao banco de dados:
+    ```ps
+    psql -U postgres -d witl_db
+    ```
+2. Execute os arquivos SQL:
+    ```bash
+    \i /caminho/para/create.sql
+    \i /caminho/para/insert.sql
+    ```
+
+### 4. Verificando os Dados
+
+Após rodar os scripts, você pode conferir se os dados foram inseridos corretamente.
+
+No **pgAdmin** ou no **terminal**, execute:
+
+```sql
+SELECT * FROM ranking;
+```
+
+Isso deve exibir os jogadores e suas pontuações.
 
 ## 📄 Licença
 
