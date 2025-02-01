@@ -41,7 +41,7 @@ O **What Is The Language**  ou **WITL** é um Game Web onde o usuário advinha q
   <img src="readme/Desktop/pelocodigo-desktop.png" alt="Tela incial de Pelo Codigo" width="350"/>
   <img src="readme/Desktop/pelocodigo-desktop-acerto.png" alt="Modal Acerto" width="350"/>
   <img src="readme/Desktop/ranking-desktop.png" alt="Ranking geral" width="350"/>
-   <img src="readme/Desktop/PeloCodigo-Fim-Desktop.png" alt="Fim" width="350"/>
+   <img src="readme/Desktop/PeloCodigo-fim-desktop.png" alt="Fim" width="350"/>
 </div>
 
 
