@@ -2,6 +2,7 @@ import { sortearNumero } from './feature/API.js'
 import { generatePlayerLife, diminuirVida } from './feature/PlayerLife.js'
 import { setupLanguageInput } from './feature/inputLanguage.js'
 import { mostrarModal, esconderModal, atualizarModal, ModalFim, configurarBotaoConcluir } from './feature/modals.js'
+import supabase from './feature/supabaseClient.js'
 
 function Game() {
   console.log(sortearNumero())
@@ -10,8 +11,7 @@ function Game() {
 generatePlayerLife()
 window.Game = Game
 
-// Atualmente são 17 linguagens
-// Espero que não seja tão dificil
+// Lista de linguagens
 const linguagens = [
   "Python",
   "JavaScript",
@@ -54,6 +54,7 @@ let tentativas = 0
 let pontos = 0
 let dicas = []
 let dicasExibidas = 0
+let linguagensOrdenadas = []
 
 function limparDicas() {
   codeBox.innerHTML = ''
@@ -116,10 +117,14 @@ async function obterRespostaDaAPI() {
   try {
     const data = await sortearNumero()
     if (data) {
+      linguagensOrdenadas.push(data.nome)
+
       respostaDaAPIData = data
       respostaDaAPI = data.nome.toLowerCase()
       dicas = [data.dica1, data.dica2, data.dica3, data.dica4, data.dica5]
+      
       adicionarDica()
+
       atualizarModal(data, 0, modalElements)
     } else {
       encerrarJogo()
@@ -146,10 +151,8 @@ function processarErro() {
 
   setTimeout(() => {
     terminal.classList.remove('shake')
-  
   }, 400)
 }
-
 
 const somSucess = new Audio('../assets/sounds/sucess-effect.mp3')
 botaoEnviar.addEventListener('click', () => {
@@ -167,7 +170,6 @@ botaoEnviar.addEventListener('click', () => {
     somSucess.currentTime = 0 
     somSucess.play()
     somSucess.volume = 0.5
-
   } else {
     processarErro()
   }
@@ -183,26 +185,31 @@ botaoContinuar.addEventListener('click', () => {
   obterRespostaDaAPI()
 })
 
-function encerrarJogo() {
-  const params = new URLSearchParams(window.location.search)
-  const nick = params.get('nick')
-  const color = params.get('color')
-  const avatar = params.get('avatar')
-  const modoDeJogo = 'Pelo Codigo'
+async function encerrarJogo() {
+  const params = new URLSearchParams(window.location.search);
+  const nick = params.get('nick');
+  const color = params.get('color');
+  const avatar = params.get('avatar');
+  const modoDeJogo = 'Pelo Codigo';
 
-  fetch('http://localhost:3000/ranking', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nick, cor: color, avatar, pontos, modo_jogo: modoDeJogo })
-  })
-  .then(response => response.json())
-  .then(() => {
-    const modalFim = document.getElementById('modalFim')
-    const botaoConcluir = document.getElementById('btnConcluir')
-    ModalFim(modalFim, nick, color, pontos, avatar)
-    configurarBotaoConcluir(modalFim, botaoConcluir, '../../../index.html')
-  })
-  .catch(console.error)
+  try {
+    const { error } = await supabase
+      .from('ranking')
+      .insert([{ nick, cor: color, avatar, pontos, modo_jogo: modoDeJogo }]);
+
+    if (error) {
+      console.error('Erro ao enviar dados para o Supabase:', error.message);
+      return;
+    }
+
+    const modalFim = document.getElementById('modalFim');
+    const botaoConcluir = document.getElementById('btnConcluir');
+    ModalFim(modalFim, nick, color, pontos, avatar);
+    configurarBotaoConcluir(modalFim, botaoConcluir, '../../../index.html');
+  } catch (err) {
+    console.error('Erro ao acessar o Supabase:', err.message);
+  }
 }
+
 
 obterRespostaDaAPI()

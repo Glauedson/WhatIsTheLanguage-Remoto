@@ -1,36 +1,36 @@
-// nesse js sempre vai ser mandado uma linguagem da api
-// um numero é sorteado e depois é puxado na api, esse numero nunca vai
-// se repetir
+import supabase from '../feature/supabaseClient.js'
 
 const max = 17
 const numerosSorteados = new Set()
 
 export async function sortearNumero() {
-
-  if (numerosSorteados.size === max) {
-    console.log('Fim')
-    return
-  }
-
-  let numeroSorteado
-  do {
-    numeroSorteado = Math.floor(Math.random() * max) + 1
-  } while (numerosSorteados.has(numeroSorteado))
-
-  numerosSorteados.add(numeroSorteado)
-  
   try {
-    const response = await fetch(`http://localhost:3000/dados?id=${numeroSorteado}`)
-    if (!response.ok) {
-      console.error(`Erro na API: ${response.statusText}`)
-      return
+    if (numerosSorteados.size >= max) {
+      console.log('Todos os números foram sorteados!')
+      return null
     }
 
-    const data = await response.json()
-    
+    let numeroSorteado
+    do {
+      numeroSorteado = Math.floor(Math.random() * max) + 1
+    } while (numerosSorteados.has(numeroSorteado))
+
+    numerosSorteados.add(numeroSorteado)
+
+    const { data, error } = await supabase
+      .from('linguagens')
+      .select('*')
+      .eq('id', numeroSorteado)
+      .single()
+
+    if (error) {
+      console.error('Erro ao acessar o Supabase:', error.message)
+      return null
+    }
+
     return data
   } catch (err) {
-    console.error('Erro ao acessar a API:', err.message)
+    console.error('Erro ao acessar o Supabase:', err.message)
+    return null
   }
-  
 }
