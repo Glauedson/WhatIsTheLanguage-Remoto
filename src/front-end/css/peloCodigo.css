@@ -201,7 +201,7 @@ main{
   
 #listaSugestoes {
   list-style: none;
-  margin: 0;
+  margin-top: 80px;
   padding: 0;
   background-color: #0F172A;
   border: 1px solid #ccc;
