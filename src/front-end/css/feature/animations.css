@@ -35,6 +35,39 @@
     }
 }
 
+@media (max-width: 1024px) {
+  @keyframes slideToLeft {
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(-38vw);
+      }
+  }
+}
+
+@media (max-width: 768px) { 
+  @keyframes slideToLeft {
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(-33vw); 
+      }
+  }
+}
+
+@media (max-width: 403px) { 
+  @keyframes slideToLeft {
+      0% {
+          transform: translateX(0);
+      }
+      100% {
+          transform: translateX(-24vw); 
+      }
+  }
+}
+
 
 /*Animação dos corações aparecendo em ordem*/
 /*Recomendado apenas para os corações*/
