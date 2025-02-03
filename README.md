@@ -4,7 +4,7 @@
 ![logo](src/front-end/assets/icons/logo-large.png)
 </div>
 
-Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um Game Web interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf).
+Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o tema livre, decidi criar um Game Web interativo e divertido de advinhar linguagens de programação. Como inspiração usei o site [Gamedle](https://www.gamedle.wtf) e agora conta com um banco de dados hospedado no **Supabase**.
 
 ## </> Topicos
 
@@ -12,8 +12,6 @@ Um projeto Full-Stack desenvolvido na avaliação de Desenvolvimento Web, com o 
 - [Screenshots Do Projeto](#screenshots-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Endpoints da API](#endpoints-da-api)
-- [Como Executar o Projeto Localmente](#como-executar-o-projeto-localmente)
-- [Como Configurar o Banco De Dados](#como-configurar-o-banco-de-dados)
 - [Licença](#licença)
 - [Contato](#contato)
 
@@ -54,7 +52,7 @@ O **What Is The Language**  ou **WITL** é um Game Web onde o usuário advinha q
 
 - **Backend**:
   
-  [![My Skills](https://skillicons.dev/icons?i=nodejs,postgres)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=postgres,supabase)](https://skillicons.dev)
 
 - **APIs**:
   - Endpoints proprios com dados de todas as linguagens
@@ -71,11 +69,6 @@ O **What Is The Language**  ou **WITL** é um Game Web onde o usuário advinha q
 
 **Parâmetros de Consulta:**
 - `id` ID da linguagem.
-
-**Exemplo de Requisição:**
-```http
-  http://localhost:3000/dados?id=1
-```
 
 **Exemplo de Resposta:**
 ```json
@@ -98,11 +91,6 @@ O **What Is The Language**  ou **WITL** é um Game Web onde o usuário advinha q
 **Parâmetros de Consulta:**
 - `id` ID do avatar.
 
-**Exemplo de Requisição:**
-```http
-  http://localhost:3000/avatars?id=1
-```
-
 **Exemplo de Resposta:**
 ```json
 [
@@ -115,11 +103,6 @@ O **What Is The Language**  ou **WITL** é um Game Web onde o usuário advinha q
 
 ### 3. **Obter Ranking de Jogadores**
 **Endpoint:** `/ranking`
-
-**Exemplo de Requisição:**
-```http
-  http://localhost:3000/ranking
-```
 
 **Exemplo de Resposta:**
 ```json
@@ -202,109 +185,6 @@ CREATE TABLE ranking (
 - `avatar`: URL do avatar.
 - `pontos`: Pontos acumulados pelo jogador.
 - `modo_jogo`: Modo de jogo (ex: Pelo codigo, Pela Logo).
-
-## </> Como Executar o Projeto Localmente
-
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/Glauedson/WhatIsTheLanguage.git
-   ```
-2. Navegue até o diretório do projeto:
-   ```bash
-   cd WhatIsTheLanguage
-   ```
-3. Configure o backend:
-   - Certifique-se de que o PostgreSQL está instalado e configurado.
-   - Atualize os dados para acessar seu banco de dados na pasta `src/back-end` no arquivo `server.js`.
-   - Execute o backend usando o comando no terminal do VsCode:
-     ```bash
-     node src/back-end/server.js
-     ```
-4. Inicie o frontend abrindo o arquivo `index.html` em um navegador.
-
-## </> Como Configurar o Banco De Dados
-
-Como configurar o banco de dados PostgreSQL e executar os scripts `create.sql` e `insert.sql` para iniciar corretamente o jogo.
-
-### 1. Instalar o PostgreSQL
-
-Se ainda não possui o PostgreSQL instalado, siga os passos abaixo:
-
-1. Baixe o instalador do PostgreSQL no site oficial: 
-
-    ```http
-    https://www.postgresql.org/download/
-    ```
-
-2. Durante a instalação, defina uma senha para o usuário postgres.
-
-3. Certifique-se de instalar o **pgAdmin** para gerenciar o banco de forma visual (opcional).
-
-### 2. Criando o Banco de Dados
-
-Após instalar o PostgreSQL, siga os passos para criar o banco de dados:
-
-**Usando o pgAdmin:**
-
-1. Abra o **pgAdmin**.
-
-2. Conecte-se ao servidor PostgreSQL.
-
-3. Clique com o botão direito em **Databases** e selecione **Create > Database**.
-
-4. No campo **Database name**, insira `witl` e clique em **Save**.
-
-**Usando o terminal (psql):**
-
-1. Abra o terminal e execute:
-
-    ```ps
-    psql -U postgres
-    ``` 
-2. Digite a senha do usuário `postgres`.
-
-3. Crie o banco de dados com:
-    ```sql
-    CREATE DATABASE witl;
-    ```
-
-### 3. Executando os Scripts SQL
-
-Agora, vamos criar as tabelas e inserir os dados iniciais.
-
-**Usando o pgAdmin:**
-
-1. No **pgAdmin**, expanda **Databases > witl > Schemas > public**.
-
-2. Clique em **Query Tool**.
-
-3. Copie e cole o conteúdo do arquivo `create.sql` e execute.
-
-4. Faça o mesmo para `insert.sql`.
-
-**Usando o terminal (psql):**
-
-1. No terminal, conecte-se ao banco de dados:
-    ```ps
-    psql -U postgres -d witl_db
-    ```
-2. Execute os arquivos SQL:
-    ```bash
-    \i /caminho/para/create.sql
-    \i /caminho/para/insert.sql
-    ```
-
-### 4. Verificando os Dados
-
-Após rodar os scripts, você pode conferir se os dados foram inseridos corretamente.
-
-No **pgAdmin** ou no **terminal**, execute:
-
-```sql
-SELECT * FROM ranking;
-```
-
-Isso deve exibir os jogadores e suas pontuações.
 
 ## 📄 Licença
 
